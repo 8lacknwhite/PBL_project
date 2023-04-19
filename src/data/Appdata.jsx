@@ -1,5 +1,22 @@
-export const carData= [
-    {manufacturer:'Maruti', models: ['Swift', 'Celerio', 'Baleno', 'Alto', 'Wagon R', 'Zen Estilo', 'A-Star', 'Vitara Brezza', 'Swift Dzire','Ertiga', 'Ritz', 'Eeco', 'S Cross', 'S-Presso', 'Ignis', 'Ciaz', ]},
-    {manufacturer: 'Volkswagen', models: ['Ameo', 'Polo', 'Vento', 'Jetta', 'Passat']},
-    {manufacturer: 'Ford', models:['Figo', 'Eco Sport', 'Feista', 'Figo Aspire']},
+export const carData = [
+    { manufacturer: 'Maruti', models: ['Swift', 'Celerio', 'Baleno', 'Alto', 'Wagon R', 'Zen Estilo', 'A-Star', 'Vitara Brezza', 'Swift Dzire', 'Ertiga', 'Ritz', 'Eeco', 'S Cross', 'S-Presso', 'Ignis', 'Ciaz',] },
+    { manufacturer: 'Volkswagen', models: ['Ameo', 'Polo', 'Vento', 'Jetta', 'Passat'] },
+    { manufacturer: 'Ford', models: ['Figo', 'Eco Sport', 'Feista', 'Figo Aspire'] },
+    { manufacturer: 'Kia', models: ['Seltos', 'Carnival', 'Sonet'] },
+    { manufacturer: 'Nissan', models: ['Micra', 'Sunny', 'Terrano'] },
+    { manufacturer: 'MG', models: ['Hector'] },
+    { manufacturer: 'Mitsubishi', models: ['Pajero Sport'] },
+    { manufacturer: 'Jaguar', models: ['XJ3', 'XF'] },
+    { manufacturer: 'Landrover', models: ['Freelander'] },
+    { manufacturer: 'Hyundai', models: ['Elantra', 'Elite i20', 'Grand i10', 'Sonata', 'Santro', 'Verna', 'i10', 'i20', 'Eon', 'Creta', 'Xcent', 'Venue', 'Accent', 'Tucson', 'Santa Fe'] },
+    { manufacturer: 'Skoda', models: ['Laura', 'Superb', 'Rapid', 'Fabia', 'Octavia'] },
+    { manufacturer: 'Toyota', models: ['Etios', 'Innova', 'Etios Liva', 'Innova Crysta', 'Corolla Altis', 'Glanza', 'Fortuner', 'Yaris', 'Etios Cross', 'Urban Cruiser'] },
+    { manufacturer: 'Jeep', models: ['Compass'] },
+    { manufacturer: 'Renault', models: ['Triber', 'Duster', 'Kwid', 'Fluence', 'Lodgy', 'Pulse', 'Scala'] },
+    { manufacturer: 'Datsun', models: ['Redi Go', 'Go'] },
+    { manufacturer: 'Fiat', models: ['Punto', 'Linea', 'Avventura', 'Grand Punto'] },
+    { manufacturer: 'Honda', models: ['Brio', 'Amaze', 'City', 'Jazz', 'BR-V', 'WR-V', 'Civic', 'Accord', 'CRV'] },
+    { manufacturer: 'Tata', models: ['Nano', 'Nexon', 'Hexa', 'Tiago', 'Tigor', 'Aria', 'Safari', 'Zest', 'Manza', 'Bolt', 'Harrier', 'Indica'] },
+    { manufacturer: 'Mahindra', models: ['Scorpio', 'XUV500', 'Thar', 'KUV100', 'Xylo', 'TUV300', 'Bolero', 'Quanto', 'NuvoSports', 'E2O'] },
+
 ]
