@@ -33,3 +33,7 @@ const sagemaker = new AWS.SageMakerRuntime({
       res.status(500).json({ error: 'Failed to predict price.' });
     }
   };
+
+  app.listen(3000, function(){
+    console.log("Server started at port 3000")
+})

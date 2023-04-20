@@ -3,6 +3,7 @@ import { carData } from "../data/Appdata";
 import { Button, Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+
 // year, transmission, km, fuel, modal, manufacturer, location, ownership, 
 
 function Homepage() {
@@ -27,7 +28,7 @@ function Homepage() {
       location: selectedLocation,
       owenership: selectedOwnership
     }
-    fetch('/api/submit', {
+    fetch('/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -37,6 +38,7 @@ function Homepage() {
       .then(response => response.json())
       .then(data => console.log(data))
       .catch(error => console.error(error));
+
   }
 
 
@@ -106,7 +108,7 @@ function Homepage() {
 
   return (
     <div>
-      <Form onSubmit={handleSubmit}>
+      <Form method="post" action="/output" onSubmit={handleSubmit}>
         <Form.Select onChange={handleManufacturerSelect}>
           <option>Select Manufacturer</option>
           {getManufacturerOptions()}
