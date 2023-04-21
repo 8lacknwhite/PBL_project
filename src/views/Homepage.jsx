@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { carData } from "../data/Appdata";
 import { Button, Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 
 // year, transmission, km, fuel, modal, manufacturer, location, ownership, 
@@ -15,31 +17,40 @@ function Homepage() {
   const [selectedFuel, setSelectedFuel] = useState('');
   const [selectedLocation, setSelectedLocation] = useState('');
   const [selectedOwnership, setSelectedOwnership] = useState('');
+  const [formData, setFormData] = useState({
+    manufacturer:"",
+    model:"",
+    year:"",
+    transmission:"",
+    fuel:"",
+    location:"",
+    ownership:"",
+    Km:""
+  })
+  
 
-  const handleSubmit = (event) => {
+
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-
-    const data = {
+    try {
+      const response = await axios.post('/', formData);
+      navigate('/output', { state: {data: response.data} });
+    } catch (error) {
+      console.log(error);
+    }
+    setFormData({
       manufacturer: selectedManufacturer,
       model: selectedModel,
       year: year,
-      distance: km,
       transmission: selectedTransmission,
+      fuel: selectedFuel,
       location: selectedLocation,
-      owenership: selectedOwnership
-    }
-    fetch('/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    })
-      .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(error => console.error(error));
-
-  }
+      ownership: selectedOwnership,
+      km: km
+    });
+  };
 
 
 
@@ -166,10 +177,12 @@ function Homepage() {
             onChange={handleSelectedLocation}
           />
         )}
-        <Button as="input" type="submit" value="Submit" />{' '}
+        <Button as="input" type="submit" value="Submit"/>{' '}
+
+
       </Form>
     </div>
   );
 }
 
-  export default Homepage
+export default Homepage
