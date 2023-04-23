@@ -2,9 +2,14 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const AWS = require('aws-sdk');
 const { createProxyMiddleware } = require('http-proxy-middleware');
+const cors = require('cors');
 
 const app = express();
 const port = 4000;
+const corsOptions = {
+  origin: 'http://localhost:3000'
+};  
+app.use(cors(corsOptions));
 
 // configure AWS SDK
 AWS.config.update({ region: 'us-east-1' });
@@ -82,7 +87,7 @@ app.get('/output', async (req, res) => {
 });
 
 // set up reverse proxy to forward requests from port 3000 to port 4000
-app.use('/', createProxyMiddleware({ target: 'http://localhost:4000', changeOrigin: true }));
+//app.use('/', createProxyMiddleware({ target: 'http://localhost:4000', changeOrigin: true }));
 
 // start the server
 app.listen(port, () => {

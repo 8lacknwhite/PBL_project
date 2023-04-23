@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { carData } from "../data/Appdata";
-import { Button, Form } from 'react-bootstrap';
+import { Button, Container, Form, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -9,6 +9,7 @@ import axios from 'axios';
 // year, transmission, km, fuel, modal, manufacturer, location, ownership, 
 
 function Homepage() {
+
   const [selectedManufacturer, setSelectedManufacturer] = useState('');
   const [selectedModel, setSelectedModel] = useState('');
   const [year, setYear] = useState('');
@@ -18,28 +19,23 @@ function Homepage() {
   const [selectedLocation, setSelectedLocation] = useState('');
   const [selectedOwnership, setSelectedOwnership] = useState('');
   const [formData, setFormData] = useState({
-    manufacturer:"",
-    model:"",
-    year:"",
-    transmission:"",
-    fuel:"",
-    location:"",
-    ownership:"",
-    Km:""
+    manufacturer: "",
+    model: "",
+    year: "",
+    transmission: "",
+    fuel: "",
+    location: "",
+    ownership: "",
+    Km: ""
   })
-  
+
 
 
   const navigate = useNavigate();
 
+  
+
   const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const response = await axios.post('/', formData);
-      navigate('/output', { state: {data: response.data} });
-    } catch (error) {
-      console.log(error);
-    }
     setFormData({
       manufacturer: selectedManufacturer,
       model: selectedModel,
@@ -50,31 +46,30 @@ function Homepage() {
       ownership: selectedOwnership,
       km: km
     });
+    event.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:4000', formData);
+      navigate('http://localhost:3000/output', { state: { data: response.data } });
+    } catch (error) {
+      console.log(error);
+    }
   };
+
 
 
 
   const handleManufacturerSelect = (event) => {
     setSelectedManufacturer(event.target.value);
     setSelectedModel('');
-    setSelectedTransmission('');
-    setSelectedFuel('');
-    setSelectedOwnership('');
   };
   const handleModelSelect = (event) => {
     setSelectedModel(event.target.value);
-    setSelectedTransmission('');
-    setSelectedFuel('');
-    setSelectedOwnership('');
   };
   const handleTransmissionSelect = (event) => {
     setSelectedTransmission(event.target.value);
-    setSelectedFuel('');
-    setSelectedOwnership('');
   };
   const handleFuelSelect = (event) => {
     setSelectedFuel(event.target.value);
-    setSelectedOwnership('');
   }
   const handleOwnershipSelect = (event) => {
     setSelectedOwnership(event.target.value);
@@ -119,68 +114,73 @@ function Homepage() {
 
   return (
     <div>
-      <Form method="post" action="/output" onSubmit={handleSubmit}>
-        <Form.Select onChange={handleManufacturerSelect}>
-          <option>Select Manufacturer</option>
-          {getManufacturerOptions()}
-        </Form.Select>
-        {selectedManufacturer && (
-          <Form.Select onChange={handleModelSelect}>
-            <option>Select Model</option>
-            {getModelOptions()}
-          </Form.Select>
-        )}
-        {
-          <Form.Select onChange={handleTransmissionSelect}>
-            <option>Select Transmission</option>
-            <option value={selectedTransmission}>Automatic</option>
-            <option value={selectedTransmission}>Manual</option>
-          </Form.Select>
-        }
-        {
-          <Form.Select onChange={handleFuelSelect}>
-            <option>Select Fuel Type</option>
-            <option value={selectedFuel}>Petrol</option>
-            <option value={selectedFuel}>Diesel</option>
-          </Form.Select>
-        }
-        {
-          <Form.Select onChange={handleOwnershipSelect}>
-            <option>Select Ownership</option>
-            <option value={selectedOwnership}>1</option>
-            <option value={selectedOwnership}>2</option>
-            <option value={selectedOwnership}>3</option>
-          </Form.Select>
-        }
+      <Container>
+        <Row>
+          <Col>
+            <Form method="post" action="/output " onSubmit={handleSubmit}>
+              <Form.Select onChange={handleManufacturerSelect}>
+                <option>Select Manufacturer</option>
+                {getManufacturerOptions()}
+              </Form.Select>
+              {selectedManufacturer && (
+                <Form.Select onChange={handleModelSelect}>
+                  <option>Select Model</option>
+                  {getModelOptions()}
+                </Form.Select>
+              )}
+              {
+                <Form.Select onChange={handleTransmissionSelect}>
+                  <option>Select Transmission</option>
+                  <option value={"Automatic"}>Automatic</option>
+                  <option value={"Manuel"}>Manual</option>
+                </Form.Select>
+              }
+              {
+                <Form.Select onChange={handleFuelSelect}>
+                  <option>Select Fuel Type</option>
+                  <option value={"Petrol"}>Petrol</option>
+                  <option value={"Diesel"}>Diesel</option>
+                </Form.Select>
+              }
+              {
+                <Form.Select onChange={handleOwnershipSelect}>
+                  <option>Select Ownership</option>
+                  <option value={"1"}>1</option>
+                  <option value={"2"}>2</option>
+                  <option value={"3"}>3</option>
+                </Form.Select>
+              }
 
-        {selectedModel && (
-          <Form.Control
-            type="text"
-            placeholder="Enter year (integer only)"
-            value={year}
-            onChange={handleYearInput}
-          />
-        )}
-        {selectedModel && (
-          <Form.Control
-            type="text"
-            placeholder="Enter Kilmeter driven (integer only)"
-            value={km}
-            onChange={handleKmInput}
-          />
-        )}
-        {selectedModel && (
-          <Form.Control
-            type="text"
-            placeholder="Location"
-            value={selectedLocation}
-            onChange={handleSelectedLocation}
-          />
-        )}
-        <Button as="input" type="submit" value="Submit"/>{' '}
+              {selectedModel && (
+                <Form.Control
+                  type="text"
+                  placeholder="Enter year (integer only)"
+                  value={year}
+                  onChange={handleYearInput}
+                />
+              )}
+              {selectedModel && (
+                <Form.Control
+                  type="text"
+                  placeholder="Enter Kilmeter driven (integer only)"
+                  value={km}
+                  onChange={handleKmInput}
+                />
+              )}
+              {selectedModel && (
+                <Form.Control
+                  type="text"
+                  placeholder="Location"
+                  value={selectedLocation}
+                  onChange={handleSelectedLocation}
+                />
+              )}
+              <Button as="input" type="submit" value="Submit" />{' '}
 
-
-      </Form>
+            </Form>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 }
